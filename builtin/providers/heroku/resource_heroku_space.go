@@ -13,6 +13,9 @@ func resourceHerokuSpace() *schema.Resource {
 		Read:   resourceHerokuSpaceRead,
 		Update: resourceHerokuSpaceUpdate,
 		Delete: resourceHerokuSpaceDelete,
+		Importer: &schema.ResourceImporter{
+			State: schema.ImportStatePassthrough,
+		},
 
 		Schema: map[string]*schema.Schema{
 			"name": {

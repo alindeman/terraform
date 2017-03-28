@@ -22,6 +22,9 @@ func resourceHerokuAddon() *schema.Resource {
 		Read:   resourceHerokuAddonRead,
 		Update: resourceHerokuAddonUpdate,
 		Delete: resourceHerokuAddonDelete,
+		Importer: &schema.ResourceImporter{
+			State: schema.ImportStatePassthrough,
+		},
 
 		Schema: map[string]*schema.Schema{
 			"app": {

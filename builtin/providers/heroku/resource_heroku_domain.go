@@ -14,6 +14,9 @@ func resourceHerokuDomain() *schema.Resource {
 		Create: resourceHerokuDomainCreate,
 		Read:   resourceHerokuDomainRead,
 		Delete: resourceHerokuDomainDelete,
+		Importer: &schema.ResourceImporter{
+			State: schema.ImportStatePassthrough,
+		},
 
 		Schema: map[string]*schema.Schema{
 			"hostname": {

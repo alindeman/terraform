@@ -15,6 +15,9 @@ func resourceHerokuCert() *schema.Resource {
 		Read:   resourceHerokuCertRead,
 		Update: resourceHerokuCertUpdate,
 		Delete: resourceHerokuCertDelete,
+		Importer: &schema.ResourceImporter{
+			State: schema.ImportStatePassthrough,
+		},
 
 		Schema: map[string]*schema.Schema{
 			"app": {
