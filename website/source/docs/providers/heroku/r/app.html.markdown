@@ -48,6 +48,7 @@ The `organization` block supports:
 * `name` (string) - The name of the organization.
 * `locked` (boolean)
 * `personal` (boolean)
+* `space` (string) - (Optional) If present, the name of the [private space] where the app will reside.
 
 ## Attributes Reference
 
@@ -68,3 +69,5 @@ The following attributes are exported:
 * `all_config_vars` - A map of all of the configuration variables that
     exist for the app, containing both those set by Terraform and those
     set externally.
+
+[private space]: https://www.heroku.com/private-spaces
