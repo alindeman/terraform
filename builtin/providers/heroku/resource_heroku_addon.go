@@ -158,7 +158,7 @@ func resourceHerokuAddonDelete(d *schema.ResourceData, meta interface{}) error {
 	return nil
 }
 
-func resourceHerokuAddonRetrieve(app string, id string, client *heroku.Service) (*heroku.AddOnInfoResult, error) {
+func resourceHerokuAddonRetrieve(app string, id string, client *heroku.Service) (*heroku.AddOn, error) {
 	addon, err := client.AddOnInfo(context.TODO(), app, id)
 
 	if err != nil {

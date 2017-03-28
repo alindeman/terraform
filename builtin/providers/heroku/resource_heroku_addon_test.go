@@ -12,7 +12,7 @@ import (
 )
 
 func TestAccHerokuAddon_Basic(t *testing.T) {
-	var addon heroku.AddOnInfoResult
+	var addon heroku.AddOn
 	appName := fmt.Sprintf("tftest-%s", acctest.RandString(10))
 
 	resource.Test(t, resource.TestCase{
@@ -39,7 +39,7 @@ func TestAccHerokuAddon_Basic(t *testing.T) {
 
 // GH-198
 func TestAccHerokuAddon_noPlan(t *testing.T) {
-	var addon heroku.AddOnInfoResult
+	var addon heroku.AddOn
 	appName := fmt.Sprintf("tftest-%s", acctest.RandString(10))
 
 	resource.Test(t, resource.TestCase{
@@ -91,7 +91,7 @@ func testAccCheckHerokuAddonDestroy(s *terraform.State) error {
 	return nil
 }
 
-func testAccCheckHerokuAddonAttributes(addon *heroku.AddOnInfoResult, n string) resource.TestCheckFunc {
+func testAccCheckHerokuAddonAttributes(addon *heroku.AddOn, n string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 
 		if addon.Plan.Name != n {
@@ -102,7 +102,7 @@ func testAccCheckHerokuAddonAttributes(addon *heroku.AddOnInfoResult, n string) 
 	}
 }
 
-func testAccCheckHerokuAddonExists(n string, addon *heroku.AddOnInfoResult) resource.TestCheckFunc {
+func testAccCheckHerokuAddonExists(n string, addon *heroku.AddOn) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		rs, ok := s.RootModule().Resources[n]
 

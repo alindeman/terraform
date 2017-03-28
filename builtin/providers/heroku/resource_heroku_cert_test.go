@@ -14,7 +14,7 @@ import (
 )
 
 func TestAccHerokuCert_Basic(t *testing.T) {
-	var endpoint heroku.SSLEndpointInfoResult
+	var endpoint heroku.SSLEndpoint
 	wd, _ := os.Getwd()
 	certificateChainFile := wd + "/test-fixtures/terraform.cert"
 	certificateChainBytes, _ := ioutil.ReadFile(certificateChainFile)
@@ -76,7 +76,7 @@ func testAccCheckHerokuCertDestroy(s *terraform.State) error {
 	return nil
 }
 
-func testAccCheckHerokuCertificateChain(endpoint *heroku.SSLEndpointInfoResult, chain string) resource.TestCheckFunc {
+func testAccCheckHerokuCertificateChain(endpoint *heroku.SSLEndpoint, chain string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 
 		if endpoint.CertificateChain != chain {
@@ -87,7 +87,7 @@ func testAccCheckHerokuCertificateChain(endpoint *heroku.SSLEndpointInfoResult, 
 	}
 }
 
-func testAccCheckHerokuCertExists(n string, endpoint *heroku.SSLEndpointInfoResult) resource.TestCheckFunc {
+func testAccCheckHerokuCertExists(n string, endpoint *heroku.SSLEndpoint) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		rs, ok := s.RootModule().Resources[n]
 

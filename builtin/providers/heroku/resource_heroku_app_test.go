@@ -13,7 +13,7 @@ import (
 )
 
 func TestAccHerokuApp_Basic(t *testing.T) {
-	var app heroku.AppInfoResult
+	var app heroku.App
 	appName := fmt.Sprintf("tftest-%s", acctest.RandString(10))
 
 	resource.Test(t, resource.TestCase{
@@ -37,7 +37,7 @@ func TestAccHerokuApp_Basic(t *testing.T) {
 }
 
 func TestAccHerokuApp_NameChange(t *testing.T) {
-	var app heroku.AppInfoResult
+	var app heroku.App
 	appName := fmt.Sprintf("tftest-%s", acctest.RandString(10))
 	appName2 := fmt.Sprintf("%s-v2", appName)
 
@@ -75,7 +75,7 @@ func TestAccHerokuApp_NameChange(t *testing.T) {
 }
 
 func TestAccHerokuApp_NukeVars(t *testing.T) {
-	var app heroku.AppInfoResult
+	var app heroku.App
 	appName := fmt.Sprintf("tftest-%s", acctest.RandString(10))
 
 	resource.Test(t, resource.TestCase{
@@ -153,7 +153,7 @@ func testAccCheckHerokuAppDestroy(s *terraform.State) error {
 	return nil
 }
 
-func testAccCheckHerokuAppAttributes(app *heroku.AppInfoResult, appName string) resource.TestCheckFunc {
+func testAccCheckHerokuAppAttributes(app *heroku.App, appName string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		client := testAccProvider.Meta().(*heroku.Service)
 
@@ -182,7 +182,7 @@ func testAccCheckHerokuAppAttributes(app *heroku.AppInfoResult, appName string) 
 	}
 }
 
-func testAccCheckHerokuAppAttributesUpdated(app *heroku.AppInfoResult, appName string) resource.TestCheckFunc {
+func testAccCheckHerokuAppAttributesUpdated(app *heroku.App, appName string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		client := testAccProvider.Meta().(*heroku.Service)
 
@@ -209,7 +209,7 @@ func testAccCheckHerokuAppAttributesUpdated(app *heroku.AppInfoResult, appName s
 	}
 }
 
-func testAccCheckHerokuAppAttributesNoVars(app *heroku.AppInfoResult, appName string) resource.TestCheckFunc {
+func testAccCheckHerokuAppAttributesNoVars(app *heroku.App, appName string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		client := testAccProvider.Meta().(*heroku.Service)
 
@@ -263,7 +263,7 @@ func testAccCheckHerokuAppAttributesOrg(app *heroku.OrganizationApp, appName str
 	}
 }
 
-func testAccCheckHerokuAppExists(n string, app *heroku.AppInfoResult) resource.TestCheckFunc {
+func testAccCheckHerokuAppExists(n string, app *heroku.App) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		rs, ok := s.RootModule().Resources[n]
 
