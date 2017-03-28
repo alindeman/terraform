@@ -11,13 +11,13 @@ import (
 func Provider() terraform.ResourceProvider {
 	return &schema.Provider{
 		Schema: map[string]*schema.Schema{
-			"email": &schema.Schema{
+			"email": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				DefaultFunc: schema.EnvDefaultFunc("HEROKU_EMAIL", nil),
 			},
 
-			"api_key": &schema.Schema{
+			"api_key": {
 				Type:        schema.TypeString,
 				Optional:    true,
 				DefaultFunc: schema.EnvDefaultFunc("HEROKU_API_KEY", nil),
@@ -30,6 +30,7 @@ func Provider() terraform.ResourceProvider {
 			"heroku_domain": resourceHerokuDomain(),
 			"heroku_drain":  resourceHerokuDrain(),
 			"heroku_cert":   resourceHerokuCert(),
+			"heroku_space":  resourceHerokuSpace(),
 		},
 
 		ConfigureFunc: providerConfigure,
